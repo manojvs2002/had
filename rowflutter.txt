@@ -1,0 +1,64 @@
+import 'dart:math';
+
+import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutterpractice/questions.dart';
+
+
+void main() {
+  runApp(MaterialApp(
+    home: Scaffold(
+      appBar: AppBar(
+        title: Text("Row app"),
+        centerTitle: true,
+      ),
+      body: rowapp(),
+    ),
+  ));
+}
+
+class rowapp extends StatefulWidget {
+  const rowapp({super.key});
+
+  @override
+  State<rowapp> createState() => _rowappState();
+}
+
+class _rowappState extends State<rowapp> {
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                alignment: Alignment.topLeft,
+               child: Container(
+                 height: 100,
+                 width: 100,
+                 color: Colors.orange,
+               ),
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.orange,
+                ),
+              ),
+              Container(
+                alignment: Alignment.bottomRight,
+                child: Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.orange,
+                ),
+              ),
+            ],
+          ),
+        );
+  }
+}
