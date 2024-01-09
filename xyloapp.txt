@@ -1,0 +1,115 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:flutter/material.dart';
+void main() {
+ runApp(MaterialApp(
+ home: Scaffold(
+ appBar: AppBar(
+ title: Text("xylo"),
+ centerTitle: true,
+ ),
+ body: xylo(),
+ ),
+ ),);
+}
+class xylo extends StatefulWidget {
+ const xylo({super.key});
+ @override
+ State<xylo> createState() => _xyloState();
+}
+class _xyloState extends State<xylo> {
+ void play(int num){
+ AssetsAudioPlayer.newPlayer().open(
+ Audio("assests/audio$num.mp3"),
+ autoStart: true,
+ showNotification: true,
+ );
+ }
+ @override
+ Widget build(BuildContext context) {
+ return Center(
+ child: Container(
+ child: Row(
+ children: [
+ Expanded(
+ child: TextButton(
+ style: TextButton.styleFrom(
+ backgroundColor: Colors.red
+ ),
+ onPressed: (){
+ play(1);
+ },
+ child: Text("one"),
+ ),
+ ),
+ Expanded(
+ child: TextButton(
+ style: TextButton.styleFrom(
+ backgroundColor: Colors.blueAccent
+ ),
+ onPressed: (){
+ play(2);
+ },
+ child: Text("two"),
+ ),
+ ),
+ Expanded(
+ child: TextButton(
+ style: TextButton.styleFrom(
+ backgroundColor: Colors.orange
+ ),
+ onPressed: (){
+ play(3);
+ },
+ child: Text("three"),
+ ),
+ ),
+ Expanded(
+ child: TextButton(
+ style: TextButton.styleFrom(
+ backgroundColor: Colors.yellow
+ ),
+ onPressed: (){
+ play(4);
+ },
+ child: Text("four"),
+ ),
+ ),
+ Expanded(
+ child: TextButton(
+ style: TextButton.styleFrom(
+ backgroundColor: Colors.amber
+ ),
+ onPressed: (){
+ play(5);
+ },
+ child: Text("five"),
+ ),
+ ),
+ Expanded(
+ child: TextButton(
+ style: TextButton.styleFrom(
+ backgroundColor: Colors.lightGreen
+ ),
+ onPressed: (){
+ play(6);
+ },
+ child: Text("six"),
+ ),
+ ),
+ Expanded(
+ child: TextButton(
+ style: TextButton.styleFrom(
+ backgroundColor: Colors.red
+ ),
+ onPressed: (){
+ play(7);
+ },
+ child: Text("seven"),
+ ),
+ ),
+ ],
+ ),
+ ),
+ );
+ }
+}
