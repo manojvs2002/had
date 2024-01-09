@@ -1,0 +1,102 @@
+import 'dart:math';
+
+import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutterpractice/questions.dart';
+
+class Questions{
+  List<Question>qb = [
+    Question(questionnumber: "qno1", answer: true),
+    Question(questionnumber: "qno2", answer: true),
+    Question(questionnumber: "qno3", answer: true),
+    Question(questionnumber: "qno4", answer: true),
+    Question(questionnumber: "qno5", answer: true)
+    
+  ];
+}
+
+
+void main() {
+
+  runApp(MaterialApp(
+    home:Scaffold(
+      appBar: AppBar(
+        title: Text("quiz"),
+      ),
+      body: quiz(),
+    ),
+  ));
+}
+
+class quiz extends StatefulWidget {
+  const quiz({super.key});
+
+  @override
+  State<quiz> createState() => _quizState();
+}
+
+class _quizState extends State<quiz> {
+  int qno =1;
+  int score =0;
+  
+  Questions questions = new Questions();
+  
+  void updateqno(){
+    setState(() {
+      qno = qno+1;
+    });
+  }
+  
+  void updatescore(int qno,bool answer){
+    setState(() {
+      if(questions.qb[qno].answer == answer){
+        score++;
+      }
+    });
+  }
+  
+  bool checkquestion(int qno){
+    return qno<questions.qb.length?true:false;
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        child: Column(
+          children: [
+            Center(
+              child: Text(checkquestion(qno)?questions.qb[qno].questionnumber:"END"),
+            ),
+            if(checkquestion(qno))
+              ElevatedButton(
+                  onPressed:(){
+                    updatescore(qno, true);
+                    updateqno();
+                  }, child: Text("true")),
+
+            if(checkquestion(qno))
+              ElevatedButton(
+                  onPressed:(){
+                    updatescore(qno,false);
+                    updateqno();
+                  }, child: Text("false")),
+            
+            Center(
+              child: Text("score is $score"),
+            )
+            
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class Question{
+  final String questionnumber;
+  final bool answer;
+  Question({required this.questionnumber,required this.answer});
+}
